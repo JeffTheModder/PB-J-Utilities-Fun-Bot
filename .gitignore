@@ -1,5 +1,0 @@
-node_modules
-.env
-utils/permisions.js
-utils/error.js
-.eslintrc.json

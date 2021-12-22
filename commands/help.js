@@ -1,6 +1,6 @@
-const Discord = require('discord.js');
-const { prefix, colors } = require('./../utils/config.json');
-const embedColor = colors.default;
+const Discord = require('discord.js')
+const { prefix, colors } = require('./../utils/config.json')
+const embedColor = colors.default
 
 module.exports = {
 	name: 'help',
@@ -18,7 +18,7 @@ module.exports = {
 
 		if (!args.length) {
 			const cmdHelpEmbed = new Discord.MessageEmbed()
-				.setTitle('**HELP**')
+				.setTitle('Help')
 				.setDescription(
 					`Command list: \n\`${commands
 						.map((command) => command.name)
@@ -26,32 +26,32 @@ module.exports = {
 							' | '
 						)}\`\nYou can use \`${prefix}help {command name}\` to get info about a specific command!`
 				)
-				.setColor(embedColor);
-			return message.channel.send(cmdHelpEmbed);
+				.setColor(embedColor)
+			return message.channel.send(cmdHelpEmbed)
 		}
 
-		const name = args[0].toLowerCase();
+		const name = args[0].toLowerCase()
 		const command =
 			commands.get(name) ||
-			commands.find((cmd) => cmd.aliases && cmd.aliases.includes(name));
+			commands.find((cmd) => cmd.aliases && cmd.aliases.includes(name))
 
 		if (!command) {
-			return message.reply('This command does not exist!');
+			return message.reply('This command does not exist!')
 		}
 		const cmdHelpEmbed = new Discord.MessageEmbed()
 			.setTitle(`${command.name} | Command info`)
 			.setDescription(command.description)
 			.addField('Usage', `\`${prefix + command.name} ${command.usage}\``, true)
-			.setColor(embedColor);
+			.setColor(embedColor)
 
 		if (command.aliases) {
 			cmdHelpEmbed.addField(
 				'Aliases',
 				`\`${command.aliases.join(' | ')}\``,
 				true
-			);
+			)
 		}
 
-		return message.channel.send(cmdHelpEmbed);
+		return message.channel.send(cmdHelpEmbed)
 	},
-};
+}
