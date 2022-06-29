@@ -1,4 +1,5 @@
 const fs = require('fs')
+require('dotenv').config();
 
 const {Client, Collection, Intents} = require('discord.js')
 const client = new Client({intents: [
@@ -19,4 +20,5 @@ fs.readdir('./commands/', (err, files) => {
 	commandHandler(err, files, client)
 })
 
+console.log(process.env.TOKEN)
 client.login(process.env.TOKEN)
